@@ -34,7 +34,7 @@ install -p -m 755 -t %{buildroot}/%{_bindir} bin/csi-snapshotter
 
 %files
 %license LICENSE THIRD_PARTY_LICENSES.txt
-%{_bindir}/%{name}
+%{_bindir}/csi-snapshotter
 
 %changelog
 * {{{.changelog_timestamp}}} - {{{$version}}}-1
