@@ -1,0 +1,11 @@
+@Library('olcne-pipeline') _
+import com.oracle.olcne.pipeline.BranchPattern
+
+String version = "v{{{ .major }}}.{{{ .minor }}}.{{{ .patch }}}";
+
+olcnePipeline(
+    containers: [('container-registry.oracle.com/olcne/csi-node-driver-registrar:' + version): 'olcne/csi-snapshotter:' + version],
+    branchPattern: new BranchPattern(master: 'oracle/release/' + version, feature: 'feature/.*'),
+    platforms: ['ol8']
+)
+
