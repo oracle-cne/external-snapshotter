@@ -4,6 +4,7 @@ import com.oracle.olcne.pipeline.BranchPattern
 String version = "v{{{ .major }}}.{{{ .minor }}}.{{{ .patch }}}";
 
 olcnePipeline(
+    customStages: [package: [container_image: "buildrpm:8-golang119"], testing: [container_image: "buildrpm:8-golang119"]],
     containers: [('container-registry.oracle.com/olcne/csi-node-driver-registrar:' + version): 'olcne/csi-snapshotter:' + version],
     branchPattern: new BranchPattern(master: 'oracle/release/' + version, feature: 'feature/.*'),
     platforms: ['ol8']
