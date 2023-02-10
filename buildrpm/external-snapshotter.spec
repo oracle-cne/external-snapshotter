@@ -26,7 +26,7 @@ creation and deletion against an CSI endpoint.
 %setup -q -n %{name}-%{version}
 
 %build
-make csi-snapshotter
+make build
 
 %install
 install -m 755 -d %{buildroot}%{_bindir}
