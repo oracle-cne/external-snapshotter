@@ -14,7 +14,6 @@
 Name:           %{_name}-container-images
 Version:        {{{ $version }}}
 Release:        1%{?dist}
-BuildArch:      x86_64
 Summary:        External-snapshotter sidecar application
 License:        Apache-2.0
 Group:          System/Management
@@ -30,7 +29,8 @@ creation and deletion against an CSI endpoint.
 
 %build
 %global rpm_name %{_name}-%{version}-%{release}.%{_build_arch}
-yumdownloader --destdir=${PWD}/rpms %{rpm_name}
+yum clean all && \
+  yumdownloader --destdir=${PWD}/rpms %{rpm_name}
 
 %global docker_tag %{registry}/%{image_name}:v%{version}
 docker build --pull \

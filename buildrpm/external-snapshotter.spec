@@ -11,7 +11,6 @@
 Name:           external-snapshotter
 Version:        {{{ $version }}}
 Release:        1%{?dist}
-BuildArch:      x86_64
 Summary:        External-snapshotter sidecar application
 License:        Apache-2.0
 Group:          System/Management
