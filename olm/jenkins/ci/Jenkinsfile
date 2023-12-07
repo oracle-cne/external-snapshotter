@@ -1,11 +1,12 @@
 @Library('olcne-pipeline') _
 import com.oracle.olcne.pipeline.BranchPattern
 
-String version = "v{{{ .major }}}.{{{ .minor }}}.{{{ .patch }}}";
+String version = "{{{ .major }}}.{{{ .minor }}}.{{{ .patch }}}";
+String imgTag  = "v" + version;
 
 olcnePipeline(
-    containers: [('container-registry.oracle.com/olcne/csi-snapshotter:' + version): 'olcne/csi-snapshotter:' + version],
     branchPattern: new BranchPattern(master: 'oracle/release/' + version, feature: 'feature/.*'),
+    containers: [('container-registry.oracle.com/olcne/csi-snapshotter:' + imgTag): 'olcne/csi-snapshotter:' + imgTag],
     platforms: ['ol8'],
     architectures: ['x86_64', 'aarch64'],
 )
