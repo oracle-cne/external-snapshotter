@@ -1,7 +1,9 @@
 FROM container-registry.oracle.com/os/oraclelinux:9 AS builder
 
+ARG version
+
 RUN dnf config-manager --enable ol9_codeready_builder && \
-    dnf -y install git make golang && \
+    dnf -y install git make golang patch && \
     go version
 
 # Copy the contents of the repository
@@ -10,7 +12,9 @@ COPY . /workspace/go/src/github.com/external-snapshotter
 ENV GOPATH=/workspace/go CGO_ENABLED=0
 WORKDIR /workspace/go/src/github.com/external-snapshotter
 
-RUN make build
+RUN patch < olm/builds/go-build.patch
+
+RUN make build REV="$version"
 
 FROM container-registry.oracle.com/os/oraclelinux:9-slim
 

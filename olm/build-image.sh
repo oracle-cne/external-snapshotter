@@ -11,6 +11,7 @@ docker_tag=${registry}/${name}:v${version}
 
 "${CONTAINER_CLI}" build --pull \
     --build-arg https_proxy=${https_proxy} \
+    --build-arg version=${version} \
     --volume /etc/yum.repos.d:/etc/yum.repos.d \
     --tag ${docker_tag} -f ./olm/builds/Dockerfile_csiSnapshotter .
 
@@ -19,5 +20,6 @@ docker_tag=${registry}/${name}:v${version}
 
 "${CONTAINER_CLI}" build --pull \
     --build-arg https_proxy=${https_proxy} \
+    --build-arg version=${version} \
     --volume /etc/yum.repos.d:/etc/yum.repos.d \
     --tag ${docker_tag} -f ./olm/builds/Dockerfile_snapshotController .
