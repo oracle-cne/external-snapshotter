@@ -9,7 +9,7 @@ RUN dnf config-manager --enable ol9_codeready_builder && \
 # Copy the contents of the repository
 COPY . /workspace/go/src/github.com/external-snapshotter
 
-ENV GOPATH=/workspace/go CGO_ENABLED=0
+ENV GOPATH=/workspace/go CGO_ENABLED=0 GOTOOLCHAIN=auto
 WORKDIR /workspace/go/src/github.com/external-snapshotter
 
 RUN patch --no-backup-if-mismatch -p0 --fuzz=0 < olm/builds/go-build.patch
